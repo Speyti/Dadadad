@@ -16,6 +16,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
+import android.widget.RelativeLayout
 import android.widget.TextView
 
 class FloatingService : Service() {
@@ -35,7 +36,6 @@ class FloatingService : Service() {
         createBubble()
     }
 
-    // Уведомление с кнопкой STOP
     private fun buildNotification(): Notification {
         val channelId = "floater_channel"
         val stopIntent = Intent(this, FloatingService::class.java).apply { action = "STOP_SERVICE" }
@@ -71,9 +71,8 @@ class FloatingService : Service() {
     }
 
     private fun createBubble() {
-        // Новый вертикальный прямоугольник
-        val width = (30 * resources.displayMetrics.density).toInt() // Уменьшен
-        val height = (60 * resources.displayMetrics.density).toInt() // Вертикальный
+        val width = (30 * resources.displayMetrics.density).toInt()
+        val height = (60 * resources.displayMetrics.density).toInt()
 
         bubbleView = TextView(this).apply {
             text = "|~×~|"
@@ -81,7 +80,6 @@ class FloatingService : Service() {
             setTextColor(Color.WHITE)
             gravity = Gravity.CENTER
             
-            // Делаем закругленные углы и темно-синий фон
             val shape = GradientDrawable()
             shape.shape = GradientDrawable.RECTANGLE
             shape.cornerRadius = 20f
@@ -114,13 +112,15 @@ class FloatingService : Service() {
             return
         }
 
-        // Подключаем нашу новую разметку
         val inflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val menu = inflater.inflate(R.layout.floating_menu, null)
 
-        // Обработка крестика
-        val closeBtn = menu.findViewById<TextView>(R.id.closeBtn)
-        closeBtn.setOnClickListener { toggleMenu() }
+        menu.findViewById<TextView>(R.id.closeBtn).setOnClickListener { toggleMenu() }
+
+        setupCategories(menu)
+
+        val topBar = menu.findViewById<RelativeLayout>(R.id.topBar)
+        topBar.setOnTouchListener(MenuDragListener())
 
         menuParams = WindowManager.LayoutParams(
             WindowManager.LayoutParams.WRAP_CONTENT,
@@ -131,12 +131,68 @@ class FloatingService : Service() {
             PixelFormat.TRANSLUCENT
         ).apply {
             gravity = Gravity.TOP or Gravity.START
-            x = params.x - (50 * resources.displayMetrics.density).toInt() // Сдвигаем меню, чтобы было ровно
+            x = (params.x - (50 * resources.displayMetrics.density).toInt()).coerceAtLeast(0)
             y = params.y
         }
 
         menuView = menu
         windowManager.addView(menu, menuParams)
+    }
+
+    private fun setupCategories(menu: View) {
+        val title = menu.findViewById<TextView>(R.id.menuTitle)
+        val funcName = menu.findViewById<TextView>(R.id.funcName)
+        
+        val catControl = menu.findViewById<TextView>(R.id.catControl)
+        val catAssistant = menu.findViewById<TextView>(R.id.catAssistant)
+        val catFunctions = menu.findViewById<TextView>(R.id.catFunctions)
+        val catAutomation = menu.findViewById<TextView>(R.id.catAutomation)
+        val catSettings = menu.findViewById<TextView>(R.id.catSettings)
+        val catInfo = menu.findViewById<TextView>(R.id.catInfo)
+
+        val allCats = listOf(catControl, catAssistant, catFunctions, catAutomation, catSettings, catInfo)
+
+        fun selectCategory(selectedCat: TextView, catTitle: String, functionText: String) {
+            for (cat in allCats) {
+                cat.setBackgroundColor(Color.TRANSPARENT)
+            }
+            selectedCat.setBackgroundColor(Color.parseColor("#8A9CF5"))
+            title.text = catTitle
+            funcName.text = functionText
+        }
+
+        catControl.setOnClickListener { selectCategory(catControl, "Control", "mouse") }
+        catAssistant.setOnClickListener { selectCategory(catAssistant, "Assistant", "") }
+        catFunctions.setOnClickListener { selectCategory(catFunctions, "Functions", "") }
+        catAutomation.setOnClickListener { selectCategory(catAutomation, "Automation", "") }
+        catSettings.setOnClickListener { selectCategory(catSettings, "Settings", "") }
+        catInfo.setOnClickListener { selectCategory(catInfo, "information", "") }
+    }
+
+    private inner class MenuDragListener : View.OnTouchListener {
+        private var initialX = 0
+        private var initialY = 0
+        private var touchX = 0f
+        private var touchY = 0f
+
+        override fun onTouch(v: View, event: MotionEvent): Boolean {
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    initialX = menuParams.x
+                    initialY = menuParams.y
+                    touchX = event.rawX
+                    touchY = event.rawY
+                    return true 
+                }
+                MotionEvent.ACTION_MOVE -> {
+                    menuParams.x = initialX + (event.rawX - touchX).toInt()
+                    menuParams.y = initialY + (event.rawY - touchY).toInt()
+                    menuView?.let { windowManager.updateViewLayout(it, menuParams) }
+                    return true
+                }
+            }
+            return false
+        }
     }
 
     private inner class BubbleTouchListener : View.OnTouchListener {
