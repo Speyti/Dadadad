@@ -1,117 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="340dp"
-    android:layout_height="wrap_content"
+    android:layout_width="441dp"  <!-- 7 см -->
+    android:layout_height="290dp" <!-- 4.6 см -->
     android:orientation="vertical"
     android:background="#0D1B2A"
-    android:padding="12dp">
+    android:padding="8dp">
 
     <!-- Верхняя панель (за неё таскаем) -->
     <RelativeLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp">
+        android:layout_height="70dp"
+        android:layout_marginBottom="4dp">
 
-        <!-- Робот слева сверху, как на скрине -->
         <ImageView
             android:id="@+id/robotImage"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:src="@drawable/robot_img"
             android:scaleType="centerCrop"
             android:layout_alignParentStart="true" />
 
-        <!-- Заголовок по центру верхней панели -->
         <TextView
             android:id="@+id/menuTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Functions"
             android:textColor="#FFFFFF"
-            android:textSize="28sp"
+            android:textSize="24sp"
             android:fontFamily="monospace"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"/>
+            android:layout_centerVertical="true" />
 
-        <!-- Крестик справа -->
         <TextView
             android:id="@+id/closeBtn"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:text="✕"
             android:textColor="#FFFFFF"
-            android:textSize="40sp"
+            android:textSize="36sp"
             android:gravity="center"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true" />
     </RelativeLayout>
 
-    <!-- Линия под заголовком -->
+    <!-- Разделительная линия -->
     <View
         android:layout_width="match_parent"
-        android:layout_height="3dp"
+        android:layout_height="2dp"
         android:background="#8A9CF5"
-        android:layout_marginBottom="12dp"
-        android:layout_marginTop="-20dp"
-        android:layout_marginStart="90dp"
-        android:layout_marginEnd="50dp" />
+        android:layout_marginBottom="8dp" />
 
     <!-- Основная часть -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <!-- Левая колонка: Категории (под роботом) -->
+        <!-- Левая колонка: Категории (1.3 см = 82dp) -->
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="82dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingEnd="8dp">
+            android:layout_marginEnd="8dp">
 
-            <TextView android:id="@+id/catControl" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Control" android:textColor="#FFFFFF" android:fontFamily="monospace" android:textSize="18sp" android:padding="8dp" android:layout_marginBottom="2dp"/>
-            <TextView android:id="@+id/catAssistant" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Assistant" android:textColor="#FFFFFF" android:fontFamily="monospace" android:textSize="18sp" android:padding="8dp" android:layout_marginBottom="2dp"/>
-            <TextView android:id="@+id/catFunctions" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Functions" android:textColor="#FFFFFF" android:fontFamily="monospace" android:textSize="18sp" android:padding="8dp" android:background="#8A9CF5" android:layout_marginBottom="2dp"/>
-            <TextView android:id="@+id/catAutomation" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Automation" android:textColor="#FFFFFF" android:fontFamily="monospace" android:textSize="18sp" android:padding="8dp" android:layout_marginBottom="2dp"/>
-            <TextView android:id="@+id/catSettings" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Settings" android:textColor="#FFFFFF" android:fontFamily="monospace" android:textSize="18sp" android:padding="8dp" android:layout_marginBottom="2dp"/>
-            <TextView android:id="@+id/catInfo" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="information" android:textColor="#FFFFFF" android:fontFamily="monospace" android:textSize="18sp" android:padding="8dp" />
+            <TextView android:id="@+id/catControl" android:layout_width="82dp" android:layout_height="32dp" android:text="Control" android:textColor="#FFFFFF" android:fontFamily="monospace" android:textSize="12sp" android:gravity="center_vertical" android:paddingStart="4dp" android:background="#1A2B3C" android:layout_marginBottom="4dp"/>
+            <TextView android:id="@+id/catAssistant" android:layout_width="82dp" android:layout_height="32dp" android:text="Assistant" android:textColor="#FFFFFF" android:fontFamily="monospace" android:textSize="12sp" android:gravity="center_vertical" android:paddingStart="4dp" android:background="#1A2B3C" android:layout_marginBottom="4dp"/>
+            <!-- Выбранная по умолчанию категория (подсвечена) -->
+            <TextView android:id="@+id/catFunctions" android:layout_width="82dp" android:layout_height="32dp" android:text="Functions" android:textColor="#0D1B2A" android:fontFamily="monospace" android:textSize="12sp" android:textStyle="bold" android:gravity="center_vertical" android:paddingStart="4dp" android:background="#8A9CF5" android:layout_marginBottom="4dp"/>
+            <TextView android:id="@+id/catAutomation" android:layout_width="82dp" android:layout_height="32dp" android:text="Automation" android:textColor="#FFFFFF" android:fontFamily="monospace" android:textSize="12sp" android:gravity="center_vertical" android:paddingStart="4dp" android:background="#1A2B3C" android:layout_marginBottom="4dp"/>
+            <TextView android:id="@+id/catSettings" android:layout_width="82dp" android:layout_height="32dp" android:text="Settings" android:textColor="#FFFFFF" android:fontFamily="monospace" android:textSize="12sp" android:gravity="center_vertical" android:paddingStart="4dp" android:background="#1A2B3C" android:layout_marginBottom="4dp"/>
+            <TextView android:id="@+id/catInfo" android:layout_width="82dp" android:layout_height="32dp" android:text="information" android:textColor="#FFFFFF" android:fontFamily="monospace" android:textSize="11sp" android:gravity="center_vertical" android:paddingStart="4dp" android:background="#1A2B3C" />
         </LinearLayout>
 
-        <!-- Правая колонка: Функции (Темная плашка) -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1.2"
+        <!-- Правая колонка (Плашка) -->
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:background="#121A24"
-            android:padding="8dp"
-            android:gravity="end">
+            android:padding="4dp">
 
-            <!-- Плашка для названия функции (пустота) -->
+            <!-- Место для названия функции (Ширина 3.8 см = 240dp) -->
             <TextView
                 android:id="@+id/funcName"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
                 android:text=""
                 android:textColor="#FFFFFF"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:fontFamily="monospace"
-                android:gravity="center"
-                android:layout_marginBottom="16dp"/>
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="8dp" />
 
-            <!-- Кнопки Tap (прижаты вправо) -->
+            <!-- Кнопки Tap (0.7x0.5 см = 44x32dp) -->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="44dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true">
 
-                <Button android:id="@+id/btnTap1" android:layout_width="100dp" android:layout_height="44dp" android:text="Tap" android:textColor="#0D1B2A" android:fontFamily="monospace" android:textStyle="bold" android:backgroundTint="#8A9CF5" android:layout_marginBottom="12dp"/>
-                <Button android:id="@+id/btnTap2" android:layout_width="100dp" android:layout_height="44dp" android:text="Tap" android:textColor="#0D1B2A" android:fontFamily="monospace" android:textStyle="bold" android:backgroundTint="#8A9CF5" android:layout_marginBottom="12dp"/>
-                <Button android:id="@+id/btnTap3" android:layout_width="100dp" android:layout_height="44dp" android:text="Tap" android:textColor="#0D1B2A" android:fontFamily="monospace" android:textStyle="bold" android:backgroundTint="#8A9CF5" android:layout_marginBottom="12dp"/>
-                <Button android:id="@+id/btnTap4" android:layout_width="100dp" android:layout_height="44dp" android:text="Tap" android:textColor="#0D1B2A" android:fontFamily="monospace" android:textStyle="bold" android:backgroundTint="#8A9CF5" android:layout_marginBottom="12dp"/>
-                <Button android:id="@+id/btnTap5" android:layout_width="100dp" android:layout_height="44dp" android:text="Tap" android:textColor="#0D1B2A" android:fontFamily="monospace" android:textStyle="bold" android:backgroundTint="#8A9CF5" />
+                <Button android:id="@+id/btnTap1" android:layout_width="44dp" android:layout_height="32dp" android:text="Tap" android:textColor="#0D1B2A" android:fontFamily="monospace" android:textStyle="bold" android:textSize="10sp" android:backgroundTint="#8A9CF5" android:padding="0dp" android:layout_marginBottom="8dp"/>
+                <Button android:id="@+id/btnTap2" android:layout_width="44dp" android:layout_height="32dp" android:text="Tap" android:textColor="#0D1B2A" android:fontFamily="monospace" android:textStyle="bold" android:textSize="10sp" android:backgroundTint="#8A9CF5" android:padding="0dp" android:layout_marginBottom="8dp"/>
+                <Button android:id="@+id/btnTap3" android:layout_width="44dp" android:layout_height="32dp" android:text="Tap" android:textColor="#0D1B2A" android:fontFamily="monospace" android:textStyle="bold" android:textSize="10sp" android:backgroundTint="#8A9CF5" android:padding="0dp" android:layout_marginBottom="8dp"/>
+                <Button android:id="@+id/btnTap4" android:layout_width="44dp" android:layout_height="32dp" android:text="Tap" android:textColor="#0D1B2A" android:fontFamily="monospace" android:textStyle="bold" android:textSize="10sp" android:backgroundTint="#8A9CF5" android:padding="0dp" android:layout_marginBottom="8dp"/>
+                <Button android:id="@+id/btnTap5" android:layout_width="44dp" android:layout_height="32dp" android:text="Tap" android:textColor="#0D1B2A" android:fontFamily="monospace" android:textStyle="bold" android:textSize="10sp" android:backgroundTint="#8A9CF5" android:padding="0dp"/>
             </LinearLayout>
-        </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 </LinearLayout>
