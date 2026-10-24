@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="320dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#CC0D1B2A"
+    android:padding="12dp">
+
+    <!-- Верхняя панель с заголовком и крестиком -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:id="@+id/menuTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Functions"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:fontFamily="monospace"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/robotImage" />
+
+        <ImageView
+            android:id="@+id/robotImage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/robot_img"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/closeBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="✕"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#4DA8DA"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Основная часть: слева категории, справа кнопки -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Левая колонка (Категории) -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingEnd="8dp">
+
+            <TextView android:id="@+id/catControl" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Control" android:textColor="#FFFFFF" android:fontFamily="monospace" android:textSize="16sp" android:padding="8dp" />
+            <TextView android:id="@+id/catAssistant" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Assistant" android:textColor="#FFFFFF" android:fontFamily="monospace" android:textSize="16sp" android:padding="8dp" />
+            
+            <!-- Выбранная категория (подсвечена) -->
+            <TextView android:id="@+id/catFunctions" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Functions" android:textColor="#FFFFFF" android:fontFamily="monospace" android:textSize="16sp" android:padding="8dp" android:background="#4DA8DA" />
+            
+            <TextView android:id="@+id/catAutomation" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Automation" android:textColor="#FFFFFF" android:fontFamily="monospace" android:textSize="16sp" android:padding="8dp" />
+            <TextView android:id="@+id/catSettings" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Settings" android:textColor="#FFFFFF" android:fontFamily="monospace" android:textSize="16sp" android:padding="8dp" />
+            <TextView android:id="@+id/catInfo" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="information" android:textColor="#FFFFFF" android:fontFamily="monospace" android:textSize="16sp" android:padding="8dp" />
+        </LinearLayout>
+
+        <!-- Правая колонка (Кнопки функций) -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <Button android:layout_width="match_parent" android:layout_height="40dp" android:text="Tap" android:textColor="#0D1B2A" android:fontFamily="monospace" android:textStyle="bold" android:backgroundTint="#8A9CF5" android:layout_marginBottom="4dp"/>
+            <Button android:layout_width="match_parent" android:layout_height="40dp" android:text="Tap" android:textColor="#0D1B2A" android:fontFamily="monospace" android:textStyle="bold" android:backgroundTint="#8A9CF5" android:layout_marginBottom="4dp"/>
+            <Button android:layout_width="match_parent" android:layout_height="40dp" android:text="Tap" android:textColor="#0D1B2A" android:fontFamily="monospace" android:textStyle="bold" android:backgroundTint="#8A9CF5" android:layout_marginBottom="4dp"/>
+            <Button android:layout_width="match_parent" android:layout_height="40dp" android:text="Tap" android:textColor="#0D1B2A" android:fontFamily="monospace" android:textStyle="bold" android:backgroundTint="#8A9CF5" android:layout_marginBottom="4dp"/>
+            <Button android:layout_width="match_parent" android:layout_height="40dp" android:text="Tap" android:textColor="#0D1B2A" android:fontFamily="monospace" android:textStyle="bold" android:backgroundTint="#8A9CF5" android:layout_marginBottom="4dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
